@@ -35,3 +35,4 @@ for i in $@
     do
         VALIDATE "$i"
     done
+
