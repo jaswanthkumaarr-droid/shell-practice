@@ -1,5 +1,8 @@
 #!bin/bash
 
+PATH="$0"
+LOCAL=$(echo "$PATH" | cut -d "." -f1)
+FILE="/var/log/shell/$LOCAL"
 
 
 USERID=$(id -u)
@@ -12,10 +15,10 @@ fi
 
 for i in $@
     do
-        dnf list installed $i
+        dnf list installed $i >> FILE
 
         if [ $? -ne 0 ]; then
-            dnf install "$i" -y
+            dnf install "$i" -y >> FILE
 
             if [ $? -ne 0 ]; then
                 echo "installation failed"
