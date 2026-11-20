@@ -7,3 +7,8 @@ if [ $USERID -ne 0 ]; then
 else
     echo "root"
 fi
+
+for i in $@
+    do
+        echo "$i"
+    done
