@@ -15,10 +15,10 @@ fi
 
 for i in $@
     do
-        dnf list installed $i >> FILE
+        dnf list installed $i >> $FILE
 
         if [ $? -ne 0 ]; then
-            dnf install "$i" -y >> FILE
+            dnf install "$i" -y >> $FILE
 
             if [ $? -ne 0 ]; then
                 echo "installation failed"
