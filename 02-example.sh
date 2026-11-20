@@ -9,9 +9,9 @@ INSTANCECREATE(){
     echo "$i created"
 
      if [ "$1" != "frontend" ]; then
-        IP=aws ec2 describe-instances --instance-ids "$INSTANCE" --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text
+        IP=$(aws ec2 describe-instances --instance-ids "$INSTANCE" --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
     else
-        IP=aws ec2 describe-instances --instance-ids "$INSTANCE" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+        IP=$(aws ec2 describe-instances --instance-ids "$INSTANCE" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
     fi    
 
     echo "$IP"
