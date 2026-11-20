@@ -4,7 +4,7 @@ AMID="ami-0055977a6e828a4f4"
 SGID="sg-0fde923c1a446b8b8"
 
 INSTANCECREATE(){
-    INSTANCE=$(aws ec2 run-instances --image-id ami-0055977a6e828a4f4 --instance-type t3.micro --security-group-ids sg-0fde923c1a446b8b8 --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$1}]' --query 'Instances[0].InstanceId' --output text)
+    INSTANCE=$(aws ec2 run-instances --image-id ami-0055977a6e828a4f4 --instance-type t3.micro --security-group-ids sg-0fde923c1a446b8b8 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --query 'Instances[0].InstanceId' --output text)
 
 }
 
