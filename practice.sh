@@ -17,6 +17,7 @@ for i in $@
             dnf install "$i" -y
             if [ $? -ne 0 ]; then
                 echo "installation failed"
+                exit 1
             else
                 echo "success"
         else
