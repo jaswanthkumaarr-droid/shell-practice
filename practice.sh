@@ -1,6 +1,6 @@
 #!bin/bash
 
-USERID=$(id -user)
+USERID=$(id -u)
 if [$USERID -ne 0]; then
     echo "error"
     exit 1
