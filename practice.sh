@@ -13,12 +13,11 @@ else
     echo "root"
 fi
 
-for i in $@
-    do
-        dnf list installed $i >> "$FILE" 2>&1
+VALIDATE(){
+    dnf list installed "$1" >> "$FILE" 2>&1
 
-        if [ $? -ne 0 ]; then
-            dnf install "$i" -y >> "$FILE" 2>&1
+    if [ $? -ne 0 ]; then
+            dnf install "$1" -y >> "$FILE" 2>&1
 
             if [ $? -ne 0 ]; then
                 echo "installation failed"
@@ -29,4 +28,10 @@ for i in $@
         else
             echo "already installed"
         fi
+
+}
+
+for i in $@
+    do
+        VALIDATE "$i"
     done
