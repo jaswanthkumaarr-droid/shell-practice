@@ -1,5 +1,7 @@
 #!bin/bash
 
+
+
 USERID=$(id -u)
 if [ $USERID -ne 0 ]; then
     echo "error"
@@ -10,5 +12,5 @@ fi
 
 for i in $@
     do
-        echo "$i"
+        dnf install "$i" -y
     done
