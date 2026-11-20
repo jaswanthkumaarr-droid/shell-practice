@@ -1,12 +1,12 @@
 #!bin/bash
 
-PATH="$0"
-LOCAL=$(echo "$PATH" | cut -d "." -f1)
+SCRIPT="$0"
+LOCAL=$(echo "$SCRIPT" | cut -d "." -f1)
 FILE="/var/log/shell/$LOCAL"
 
 
 USERID=$(id -u)
-if [ $USERID -ne 0 ]; then
+if [ "$USERID" -ne 0 ]; then
     echo "error"
     exit 1
 else
@@ -15,10 +15,10 @@ fi
 
 for i in $@
     do
-        dnf list installed $i >> $FILE
+        dnf list installed $i >> "$FILE" 2>&1
 
         if [ $? -ne 0 ]; then
-            dnf install "$i" -y >> $FILE
+            dnf install "$i" -y >> "$FILE" 2>&1
 
             if [ $? -ne 0 ]; then
                 echo "installation failed"
